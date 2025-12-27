@@ -37,6 +37,18 @@ title: Welcome to Evidence
   order by sales_usd desc
 ```
 
+# Demo Dashboard
+
+Using a real DuckDB database file.
+
+```sql my_data
+select * from demo.test_table
+```
+
+<DataTable data={my_data} />
+
+<BarChart data={my_data} x=message y=value />
+
 <BarChart
     data={orders_by_category}
     title="Sales by Month, {inputs.category.label}"

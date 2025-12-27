@@ -33,12 +33,22 @@ jobs:
           cd evidence
           npm install
 
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Create Demo Database
+        run: python create_db.py
+
       - name: Build site
         run: |
           cd evidence
           npm run sources
           npm run build
-          # relevant for github pages
           touch build/.nojekyll
 
       - name: Upload artifact

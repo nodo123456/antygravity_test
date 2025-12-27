@@ -15,12 +15,23 @@ def run_pipeline():
     print("--- 3. Exporting to Evidence ---")
     con = duckdb.connect("ingestion/raw.duckdb")
     
+    # Debug: List tables
+    print("DuckDB Tables found:", con.sql("SHOW TABLES").fetchall())
+    
     output_dir = "evidence/sources/synthetic"
     os.makedirs(output_dir, exist_ok=True)
     
     # Export daily_stats
     print("Exporting daily_stats.csv...")
-    con.sql(f"COPY (SELECT * FROM daily_stats) TO '{output_dir}/daily_stats.csv' (HEADER, DELIMITER ',')")
+    # Explicitly check if table exists to avoid confusing error
+    try:
+        con.sql(f"COPY (SELECT * FROM daily_stats) TO '{output_dir}/daily_stats.csv' (HEADER, DELIMITER ',')")
+        print("Export successful.")
+    except Exception as e:
+        print(f"Export FAILED: {e}")
+        # List tables again to be sure
+        print("Tables available:", con.sql("SHOW TABLES").fetchall())
+        raise e
     
     con.close()
     print("--- Pipeline Complete ---")

@@ -19,4 +19,4 @@ clean-targets:
 
 models:
   synthetic_analytics:
-    materialized: view
+    materialized: table

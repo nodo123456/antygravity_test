@@ -47,7 +47,7 @@ jobs:
 
       - name: Build Evidence Site
         run: |
-          cp mds_box.duckdb evidence/mds_box.duckdb
+          python export_to_csv.py
           cd evidence
           npm install
           npm run sources

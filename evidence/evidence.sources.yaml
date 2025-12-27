@@ -1,5 +1,5 @@
 sources:
   - name: my_project
-    type: duckdb
-    options: 
-      filename: ./mds_box.duckdb
+    type: csv
+    options:
+      path: ./sources/my_project

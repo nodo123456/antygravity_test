@@ -4,7 +4,7 @@ import random
 def generate():
     print("Generating customer data...")
     
-    user_ids = range(1001, 1101) # 100 users matching events
+    user_ids = range(1001, 1201) # 200 users (1001-1200)
     names = [f"User_{i}" for i in user_ids]
     countries = ['US', 'UK', 'CA', 'DE', 'FR', 'JP', 'AU']
     

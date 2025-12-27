@@ -16,8 +16,8 @@ def generate(num_rows=1000):
     weights = [0.4, 0.3, 0.15, 0.1, 0.05]
     event_types = random.choices(events, weights=weights, k=num_rows)
     
-    # Users
-    user_ids = [random.randint(1001, 1100) for _ in range(num_rows)] # 100 users
+    # Users (Subset of total customers, ensuring some have 0 events)
+    user_ids = [random.randint(1001, 1100) for _ in range(num_rows)] # Only first 100 users have events
     
     # Values (revenue for purchase, 0 otherwise)
     values = []

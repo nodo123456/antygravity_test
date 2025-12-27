@@ -34,11 +34,11 @@ graph LR
 ## 🛠 Technologies
  This project leverages the bleeding edge of the Modern Data Stack:
 
-*   **[DuckDB](https://duckdb.org/)**: An in-process SQL OLAP database management system. Used here for high-performance local data processing and transformation.
+*   **[DuckDB](https://duckdb.org/)**: An in-process SQL OLAP database management system. Used here for high-performance local data processing and transformation. (Emulates a data warehouse like BigQuery or Redshift)
 *   **[dbt Core](https://www.getdbt.com/)**: Transformation workflow. Applies software engineering best practices (modularity, testing, version control) to analytics code.
-*   **[Evidence.dev](https://evidence.dev/)**: "Business Intelligence as Code". Generates a performant, static data website from markdown and SQL.
+*   **[Evidence.dev](https://evidence.dev/)**: "Business Intelligence as Code". Generates a performant, static data website from markdown and SQL. (Emulates main viz tool like Looker, Tableau)
 *   **[Python](https://www.python.org/)**: Orchestration and synthetic data generation validation.
-*   **[GitHub Actions](https://github.com/features/actions)**: Fully automated CI/CD pipeline. The entire stack spins up, runs, tests, and deploys on every commit.
+*   **[GitHub Actions](https://github.com/features/actions)**: Fully automated CI/CD pipeline. The entire stack spins up, runs, tests, and deploys on every commit. (Emulates orchestration like Airflow, Prefect)
 
 ## 🧠 Methodologies
 

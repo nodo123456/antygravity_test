@@ -18,20 +18,7 @@ limit 500
     <DropdownOption value="events" label="Raw Events" />
 </Dropdown>
 
-{#if inputs.table_selector == 'customers'}
-
-## Customers Table
-
-All users registered on the platform.
-
-<DataTable data={customers} search=true rows=10>
-  <Column id=user_id title="ID" />
-  <Column id=name title="Name" />
-  <Column id=email title="Email" />
-  <Column id=country title="Country" />
-</DataTable>
-
-{:else if inputs.table_selector == 'events'}
+{#if inputs.table_selector == 'events'}
 
 ## Raw Events Table
 
@@ -43,6 +30,19 @@ Individual user actions (Logins, Clicks, Purchases).
     <Column id=user_id title="User ID" />
     <Column id=event_type title="Action" />
     <Column id=revenue title="Revenue" fmt=currency />
+</DataTable>
+
+{:else}
+
+## Customers Table
+
+All users registered on the platform.
+
+<DataTable data={customers} search=true rows=10>
+  <Column id=user_id title="ID" />
+  <Column id=name title="Name" />
+  <Column id=email title="Email" />
+  <Column id=country title="Country" />
 </DataTable>
 
 {/if}

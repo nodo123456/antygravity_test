@@ -1,5 +1,6 @@
 import dlt
 import requests
+import os
 
 @dlt.resource(table_name="github_events", write_disposition="replace")
 def github_events(username):
@@ -7,7 +8,12 @@ def github_events(username):
     Fetches public events for a GitHub user.
     """
     url = f"https://api.github.com/users/{username}/events/public"
-    response = requests.get(url)
+    headers = {}
+    token = os.getenv("GITHUB_TOKEN")
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    
+    response = requests.get(url, headers=headers)
     response.raise_for_status()
     yield response.json()
 

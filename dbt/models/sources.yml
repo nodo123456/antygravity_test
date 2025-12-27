@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: synthetic
+    schema: main
+    tables:
+      - name: raw_events

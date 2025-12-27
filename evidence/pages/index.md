@@ -1,16 +1,40 @@
-# My Data Dashboard
+# Business Analytics Dashboard
 
-This dashboard visualizes data from our verified CSV source.
+Executive summary of platform performance based on synthetic data.
 
-```sql my_data
-select * from demo.test_table
+```sql daily_revenue
+select day, total_revenue 
+from synthetic.daily_stats 
+where event_type = 'purchase'
+order by day
 ```
 
-<BarChart 
-    data={my_data} 
-    x=message 
-    y=value 
-    title="Demo Values"
+```sql events_trend
+select day, event_type, event_count 
+from synthetic.daily_stats
+order by day
+```
+
+## revenue Overview
+
+<LineChart 
+    data={daily_revenue} 
+    x=day 
+    y=total_revenue 
+    title="Daily Revenue Trend"
+    yFmt=currency
 />
 
-<DataTable data={my_data} />
+## User Activity
+
+<AreaChart 
+    data={events_trend} 
+    x=day 
+    y=event_count 
+    series=event_type 
+    title="Daily Events by Type"
+/>
+
+## Detailed Stats
+
+<DataTable data={events_trend} totalRow=true search=true />

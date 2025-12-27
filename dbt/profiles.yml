@@ -1,0 +1,7 @@
+synthetic_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: 'ingestion/raw.duckdb'
+      threads: 1

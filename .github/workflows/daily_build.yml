@@ -32,6 +32,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python ingestion/github_pipeline.py
+          ls -lh mds_box.duckdb
 
       - name: Run Transformation (dbt)
         run: |

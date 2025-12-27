@@ -4,10 +4,11 @@ import os
 # Ensure directory exists
 os.makedirs("evidence/sources/demo", exist_ok=True)
 
-# Create database and table
-db_path = "evidence/sources/demo/demo.duckdb"
-con = duckdb.connect(db_path)
-con.sql("CREATE TABLE IF NOT EXISTS test_table AS SELECT 1 as id, 'Hello World' as message, 100 as value UNION ALL SELECT 2, 'Evidence is Cool', 200")
-print(f"Created demo database at {db_path}")
-print(con.sql("SELECT * FROM test_table").fetchall())
+# Create mock data and export to CSV
+con = duckdb.connect()
+con.sql("CREATE TABLE test_table AS SELECT 1 as id, 'Hello World' as message, 100 as value UNION ALL SELECT 2, 'Evidence is Cool', 200")
+csv_path = "evidence/sources/demo/test_table.csv"
+con.sql(f"COPY test_table TO '{csv_path}' (HEADER, DELIMITER ',')")
+
+print(f"Created demo CSV at {csv_path}")
 con.close()

@@ -2,11 +2,7 @@
 
 List of all registered customers on the platform.
 
-```sql q_status_options
-select distinct status from synthetic.customer_activity
-```
 
-<Dropdown name=status_filter title="Status" data={q_status_options} label=status value=status defaultValue="All" />
 
 ```sql customers
 select 
@@ -18,7 +14,6 @@ select
     total_revenue, 
     status 
 from synthetic.customer_activity
-where status = '${inputs.status_filter}'
 order by total_revenue desc
 ```
 

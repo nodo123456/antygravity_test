@@ -3,7 +3,7 @@ import numpy as np
 from datetime import datetime, timedelta
 import random
 
-def generate_events_df(num_rows=1000):
+def generate(num_rows=1000):
     print(f"Generating {num_rows} rows of synthetic events...")
     
     # Dates: Last 30 days

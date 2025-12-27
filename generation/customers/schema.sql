@@ -1,0 +1,1 @@
+CREATE OR REPLACE TABLE raw_customers AS SELECT * FROM df_view

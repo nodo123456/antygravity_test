@@ -26,7 +26,10 @@ def run_pipeline():
     # Explicitly check if table exists to avoid confusing error
     try:
         con.sql(f"COPY (SELECT * FROM daily_stats) TO '{output_dir}/daily_stats.csv' (HEADER, DELIMITER ',')")
-        print("Export successful.")
+        print("Export daily_stats successful.")
+        
+        con.sql(f"COPY (SELECT * FROM stg_customers LIMIT 100) TO '{output_dir}/customers.csv' (HEADER, DELIMITER ',')")
+        print("Export customers successful.")
     except Exception as e:
         print(f"Export FAILED: {e}")
         # List tables again to be sure

@@ -1,28 +1,50 @@
 import duckdb
 import os
-from generation.generators import generate_events_df
+import importlib.util
+import sys
+
+# Define domains to process
+DOMAINS = ['events', 'customers']
 
 def create_database():
     # 1. Setup
     os.makedirs("database", exist_ok=True)
     db_path = "database/raw.duckdb"
-    
-    # 2. Get Data
-    df = generate_events_df(1000)
-    
-    # 3. Load to DuckDB using SQL file
     con = duckdb.connect(db_path)
     
-    # Register DataFrame as a view so SQL can see it
-    con.register('df_view', df)
-    
-    # Read and Execute DDL
-    with open("generation/schema/raw_events.sql", "r") as f:
-        sql = f.read()
-        con.sql(sql)
-    
-    print(f"Data saved to {db_path}")
-    print(con.sql("SELECT event_type, count(*) as count FROM raw_events GROUP BY 1 ORDER BY 2 DESC").fetchall())
+    for domain in DOMAINS:
+        print(f"--- Processing Domain: {domain} ---")
+        
+        # Load Generator Module dynamically
+        # (Or simpler: just import them if structure is known, but dynamic is nice for extensibility)
+        # For simplicity/robustness, let's just do direct imports or standard import logic
+        # Actually, standard import is cleaner given the structure
+        module_name = f"generation.{domain}.generator"
+        
+        # Import module
+        try:
+             mod = __import__(module_name, fromlist=['generate'])
+             df = mod.generate()
+             
+             # Register as view
+             con.register('df_view', df)
+             
+             # Execute Schema
+             schema_path = f"generation/{domain}/schema.sql"
+             with open(schema_path, 'r') as f:
+                 sql = f.read()
+                 con.sql(sql)
+                 
+             print(f"Created table for {domain}")
+             
+        except ImportError as e:
+            print(f"Error loading generator for {domain}: {e}")
+        except Exception as e:
+            print(f"Error processing {domain}: {e}")
+
+    # Verify
+    print("\n--- Database Stats ---")
+    print("Tables:", con.sql("SHOW TABLES").fetchall())
     con.close()
 
 if __name__ == "__main__":

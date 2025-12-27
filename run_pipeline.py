@@ -31,11 +31,11 @@ def run_pipeline():
         con.sql(f"COPY (SELECT * FROM customer_activity) TO '{output_dir}/customer_activity.csv' (HEADER, DELIMITER ',')")
         print("Export customer_activity successful.")
 
-        con.sql(f"COPY (SELECT * FROM stg_customers) TO '{output_dir}/customers.csv' (HEADER, DELIMITER ',')")
-        print("Export customers successful.")
+        con.sql(f"COPY (SELECT * FROM stg_customers) TO '{output_dir}/stg_customers.csv' (HEADER, DELIMITER ',')")
+        print("Export stg_customers successful.")
 
-        con.sql(f"COPY (SELECT * FROM stg_events LIMIT 1000) TO '{output_dir}/raw_events.csv' (HEADER, DELIMITER ',')")
-        print("Export raw_events successful.")
+        con.sql(f"COPY (SELECT * FROM stg_events LIMIT 1000) TO '{output_dir}/stg_events.csv' (HEADER, DELIMITER ',')")
+        print("Export stg_events successful.")
     except Exception as e:
         print(f"Export FAILED: {e}")
         # List tables again to be sure

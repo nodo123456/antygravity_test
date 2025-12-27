@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Database
+*.duckdb
+*.duckdb.wal
+
+# dbt
+dbt_packages/
+logs/
+target/
+
+# Evidence
+.evidence/
+node_modules/

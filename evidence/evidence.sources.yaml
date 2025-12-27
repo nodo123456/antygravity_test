@@ -2,4 +2,4 @@ sources:
   - name: my_project
     type: duckdb
     options: 
-      filename: ../mds_box.duckdb
+      filename: ./mds_box.duckdb

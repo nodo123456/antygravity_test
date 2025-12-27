@@ -3,5 +3,5 @@ synthetic_analytics:
   outputs:
     dev:
       type: duckdb
-      path: 'ingestion/raw.duckdb'
+      path: 'database/raw.duckdb'
       threads: 1

@@ -13,7 +13,7 @@ def run_pipeline():
     
     # 3. Export to Evidence
     print("--- 3. Exporting to Evidence ---")
-    con = duckdb.connect("ingestion/raw.duckdb")
+    con = duckdb.connect("database/raw.duckdb")
     
     # Debug: List tables
     print("DuckDB Tables found:", con.sql("SHOW TABLES").fetchall())

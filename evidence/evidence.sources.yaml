@@ -1,5 +1,1 @@
-sources:
-  - name: synthetic
-    type: csv
-    options:
-      path: sources/synthetic
+sources: []

@@ -46,6 +46,7 @@ jobs:
 
       - name: Build site
         run: |
+          ls -R evidence/sources
           cd evidence
           npm run sources
           npm run build

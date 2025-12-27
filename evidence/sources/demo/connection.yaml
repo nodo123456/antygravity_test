@@ -1,4 +1,4 @@
 name: demo
 type: duckdb
 options:
-  filename: ./demo.duckdb
+  filename: sources/demo/demo.duckdb

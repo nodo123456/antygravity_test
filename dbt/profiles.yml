@@ -1,8 +1,0 @@
-my_mds_project:
-  target: dev
-  outputs:
-    dev:
-      type: duckdb
-      path: '../mds_box.duckdb'
-      extensions: 
-        - parquet

@@ -1,5 +1,0 @@
-sources:
-  - name: my_project
-    type: csv
-    options:
-      path: ./sources/my_project
